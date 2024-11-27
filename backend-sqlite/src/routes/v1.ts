@@ -3,9 +3,6 @@ import ItemController from "../controllers/item.controller.js";
 
 const v1 = new Hono();
 
-// Create items
-v1.post("/items/create", ItemController.createItems);
-
 // Get all items
 v1.get("/items", ItemController.getAllItems);
 

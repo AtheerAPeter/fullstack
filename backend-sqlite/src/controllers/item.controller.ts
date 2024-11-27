@@ -13,26 +13,6 @@ const updatePriceSchema = z.object({
 });
 
 export default class ItemController {
-  static async createItems(c: Context) {
-    const body = await c.req.json();
-
-    const bodywithoutItemId = body.reduce((acc: any, item: any) => {
-      acc.push({
-        item_name: item.item_name,
-        category: item.category,
-        price: item.price,
-        stock_quantity: item.stock_quantity,
-      });
-      return acc;
-    }, []);
-
-    const d = await prisma.items.createManyAndReturn({
-      data: bodywithoutItemId,
-    });
-
-    return resData(c, d);
-  }
-
   static async getAllItems(c: Context) {
     try {
       const items = await prisma.items.findMany();
